@@ -14,7 +14,7 @@ public class GameModeWaves : MonoBehaviour
         //GANAR
         if(EnemyManager.SharedInstance.enemies.Count <= 0 && WaveManager.SharedInstance.waves.Count <=0)
         {
-            SceneManager.LoadScene("WinScene", LoadSceneMode.Additive);
+            SceneManager.LoadScene("WinScene");
         }
         //PERDER
         if (playerLife.Amount <= 0)

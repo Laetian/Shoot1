@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Life : MonoBehaviour
 {
     [SerializeField]
     private float amount;
+
+    public UnityEvent onDeath;
 
     public float Amount
     {
@@ -15,16 +18,8 @@ public class Life : MonoBehaviour
             amount = value;
             if (amount<= 0)
             {
-                Animator anim = GetComponent<Animator>();
-                anim.SetTrigger("PlayDie");
-                Invoke("PlayDestruction", 0.6f);
-                Destroy(gameObject, 2);
+                onDeath.Invoke();
             }
         }
-    }
-    void PlayDestruction()
-    {
-        ParticleSystem xplosion = GetComponentInChildren<ParticleSystem>();
-        xplosion.Play();
     }
 }
