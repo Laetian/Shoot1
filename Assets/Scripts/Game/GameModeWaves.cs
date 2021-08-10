@@ -8,18 +8,29 @@ public class GameModeWaves : MonoBehaviour
     [SerializeField]
     private Life playerLife;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField]
+    private Life baseLife;
+
+    private void Awake()
+    {
+        playerLife.onDeath.AddListener(CheckLoseCondition);
+        baseLife.onDeath.AddListener(CheckLoseCondition);
+
+        EnemyManager.SharedInstance.onEnemyChanged.AddListener(CheckWinCondition);
+        WaveManager.SharedInstance.onWaveChanged.AddListener(CheckWinCondition);
+    }
+
+    void CheckLoseCondition()
+    {
+    //PERDER
+    SceneManager.LoadScene("LoseScene");      
+    }
+    void CheckWinCondition()
     {
         //GANAR
-        if(EnemyManager.SharedInstance.enemies.Count <= 0 && WaveManager.SharedInstance.waves.Count <=0)
+        if (EnemyManager.SharedInstance.EnemyCount <= 0 && WaveManager.SharedInstance.WaveCount <= 0)
         {
             SceneManager.LoadScene("WinScene");
-        }
-        //PERDER
-        if (playerLife.Amount <= 0)
-        {
-            SceneManager.LoadScene("LoseScene");
         }
     }
 }
