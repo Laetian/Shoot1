@@ -42,20 +42,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe0e9eabc3106b479b61a4225d05645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 100
---- !u!114 &5996904180276831054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1281577910582439083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45b8bbe74ce58814d86242fae0a700a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
+  maximunLife: 100
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4826554235139019442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +59,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsAmount: 10
+--- !u!114 &5996904180276831054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281577910582439083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45b8bbe74ce58814d86242fae0a700a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
 --- !u!1001 &3932371840224162260
 PrefabInstance:
   m_ObjectHideFlags: 0

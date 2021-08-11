@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WaveManager : MonoBehaviour
 {
     public static WaveManager SharedInstance;
 
     private List<WaveSpawner> waves;
+
+    public UnityEvent onWaveChanged;
 
     public int WaveCount
     {
@@ -29,11 +32,12 @@ public class WaveManager : MonoBehaviour
     public void AddWave(WaveSpawner wave)
     {
         waves.Add(wave);
-
+        onWaveChanged.Invoke();
     }
 
     public void RemoveWave(WaveSpawner wave)
     {
         waves.Remove(wave);
+        onWaveChanged.Invoke();
     }
 }
