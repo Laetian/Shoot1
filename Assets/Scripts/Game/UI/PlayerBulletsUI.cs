@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
 public class PlayerBulletsUI : MonoBehaviour
 {
     private TextMeshProUGUI _text;
@@ -11,12 +12,21 @@ public class PlayerBulletsUI : MonoBehaviour
 
     private PlayerShooting targetShooting;
 
+
+
     private void Awake()
     {
         _text = GetComponent<TextMeshProUGUI>();
+
+        PlayerShooting.SharedInstance.onAmmoChanged.AddListener(CheckAmmo);
     }
-    private void Update()
+
+
+    private void CheckAmmo()
     {
         _text.text = "Bullets: " + targetShooting.BulletAmount;
     }
+
+
+
 }

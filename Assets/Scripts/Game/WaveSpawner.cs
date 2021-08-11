@@ -36,6 +36,6 @@ public class WaveSpawner : MonoBehaviour
     void EndWave()
     {
         WaveManager.SharedInstance.RemoveWave(this);
-        CancelInvoke();
+        CancelInvoke("SpawnEnemy");
     }
 }

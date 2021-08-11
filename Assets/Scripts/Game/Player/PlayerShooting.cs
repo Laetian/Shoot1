@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 
 public class PlayerShooting : MonoBehaviour
 {
-
+    public static PlayerShooting SharedInstance;
 
     [SerializeField]
     [Tooltip("Punto de salida del disparo")]
@@ -12,16 +14,20 @@ public class PlayerShooting : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Balas del jugador")]
-    private int bulletAmount;
+    private int bulletamount;
     public int BulletAmount
     {
-        get => bulletAmount;
+        get => bulletamount;
         set
         {
-            bulletAmount = bulletAmount + value;
+            bulletamount += value;
         }
     }
     private Animator _animator;
+
+    public UnityEvent onAmmoChanged;
+
+
 
     private void Awake()
     {
@@ -32,7 +38,7 @@ public class PlayerShooting : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (bulletAmount > 0)
+            if (bulletamount > 0)
             {
                 _animator.SetTrigger("ShotBullet");
                 Invoke("FireBullet", 0);
@@ -51,6 +57,9 @@ public class PlayerShooting : MonoBehaviour
         bullet.transform.position = shootingPoint.transform.position;
         bullet.transform.rotation = shootingPoint.transform.rotation;
         bullet.SetActive(true);
-        bulletAmount--;
+        bulletamount--;
+        onAmmoChanged.Invoke();
+
     }
+
 }

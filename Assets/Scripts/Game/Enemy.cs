@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField]
     [Tooltip("Puntos que se suman al destruir al enemigo")]
-    public int pointsAmount;
+    private int pointsAmount;
 
     private void Awake()
     {

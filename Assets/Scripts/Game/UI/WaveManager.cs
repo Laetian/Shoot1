@@ -8,13 +8,12 @@ public class WaveManager : MonoBehaviour
     public static WaveManager SharedInstance;
 
     private List<WaveSpawner> waves;
-
-    public UnityEvent onWaveChanged;
-
     public int WaveCount
     {
         get => waves.Count;
     }
+
+    public UnityEvent onWaveChanged;
 
     private void Awake()
     {

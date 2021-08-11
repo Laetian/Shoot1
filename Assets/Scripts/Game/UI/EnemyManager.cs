@@ -8,7 +8,6 @@ public class EnemyManager : MonoBehaviour
     public static EnemyManager SharedInstance;
 
     private List<Enemy> enemies;
-
     public int EnemyCount
     {
         get => enemies.Count;
