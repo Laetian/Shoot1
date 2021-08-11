@@ -12,20 +12,19 @@ public class PlayerShooting : MonoBehaviour
     [Tooltip("Punto de salida del disparo")]
     private GameObject shootingPoint;
 
+    public UnityEvent onAmmoChanged;
+
     [SerializeField]
     [Tooltip("Balas del jugador")]
-    private int bulletamount;
+    private int bulletAmount;
     public int BulletAmount
     {
-        get => bulletamount;
-        set
-        {
-            bulletamount += value;
-        }
+        get => bulletAmount;
+
     }
     private Animator _animator;
 
-    public UnityEvent onAmmoChanged;
+
 
 
 
@@ -38,7 +37,7 @@ public class PlayerShooting : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (bulletamount > 0)
+            if (bulletAmount > 0)
             {
                 _animator.SetTrigger("ShotBullet");
                 Invoke("FireBullet", 0);
@@ -57,9 +56,8 @@ public class PlayerShooting : MonoBehaviour
         bullet.transform.position = shootingPoint.transform.position;
         bullet.transform.rotation = shootingPoint.transform.rotation;
         bullet.SetActive(true);
-        bulletamount--;
+        bulletAmount--;
         onAmmoChanged.Invoke();
-
     }
 
 }
