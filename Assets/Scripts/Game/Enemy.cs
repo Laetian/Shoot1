@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
     {
         Animator anim = GetComponent<Animator>();
         anim.SetTrigger("PlayDie");
+        Collider body = GetComponent<Collider>();
+        body.enabled = false;
         Invoke("PlayDestruction", 0.6f);
         Destroy(gameObject, 2);
 
