@@ -6,13 +6,12 @@ using UnityEngine.Events;
 public class Life : MonoBehaviour
 {
 
-    private float amount;
-
     
     public float maximunLife;
 
     public UnityEvent onDeath;
 
+    private float amount;
     public float Amount
     {
         get => amount;

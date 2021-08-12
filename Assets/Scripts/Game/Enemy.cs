@@ -1,10 +1,15 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
+
+
     [SerializeField]
     [Tooltip("Puntos que se suman al destruir al enemigo")]
     private int pointsAmount;
+    
+    public UnityEvent scoreChange;
 
     private void Awake()
     {
@@ -17,6 +22,9 @@ public class Enemy : MonoBehaviour
     }
     private void DestroyEnemy()
     {
+        scoreChange.Invoke();
+        ScoreUI.SharedInstance.ChangeScore(pointsAmount);
+        scoreChange.Invoke();
         Animator anim = GetComponent<Animator>();
         anim.SetTrigger("PlayDie");
         Collider body = GetComponent<Collider>();
