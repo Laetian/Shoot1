@@ -7,8 +7,9 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class LifeBar : MonoBehaviour
 {
-    [Tooltip("Vida del player")]
-    public Life targetLife;
+    [SerializeField]
+    [Tooltip("HP of target")]
+    private Life targetLife;
 
     private Image _image;
 

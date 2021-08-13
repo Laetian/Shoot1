@@ -5,41 +5,25 @@ using TMPro;
 
 public class EnemiesUI : MonoBehaviour
 {
-    public static EnemiesUI SharedInstance;
+
 
     private TextMeshProUGUI _text;
 
-    [SerializeField]
-    [Tooltip("Enemies left")]
-    private int score;
-    public int Score
-    {
-        get => score;
-        set
-        {
-            score += value;
-        }
-    }
 
     private void Awake()
     {
-        if (SharedInstance == null)
-        {
-            SharedInstance = this;
-        }
-        else
-        {
-            Debug.LogWarning("ScoreUI duplicated must be destroyed", gameObject);
-            Destroy(this);
-        }
         _text = GetComponent<TextMeshProUGUI>();
-        _text.text = "Score: " + 0;
+   
+    }
+    private void Start()
+    {
+        EnemyManager.SharedInstance.onEnemyChanged.AddListener(UpdateText);
+        _text.text = "Remaining enemies: " + EnemyManager.SharedInstance.EnemyCount;
     }
 
-    public void ChangeScore(int value)
+    private void UpdateText()
     {
-        score += value;
-        _text.text = "Score: " + score;
+        _text.text = "Remaining enemies: " + EnemyManager.SharedInstance.EnemyCount;
     }
 
 }

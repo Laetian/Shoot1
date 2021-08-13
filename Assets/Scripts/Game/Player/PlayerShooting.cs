@@ -47,7 +47,8 @@ public class PlayerShooting : MonoBehaviour
         {
             if (bulletAmount > 0)
             {
-                Invoke("FireBullet", 0);
+                FireBullet();
+                //Invoke("FireBullet", 0);
             }
             else
             {

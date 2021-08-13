@@ -6,9 +6,11 @@ public class Enemy : MonoBehaviour
 
 
     [SerializeField]
-    [Tooltip("Puntos que se suman al destruir al enemigo")]
+    [Tooltip("Points added to store at enemy destroy")]
     private int pointsAmount;
-    
+
+    private float retardoPlayDestruction = 0.6f;
+
     public UnityEvent scoreChange;
 
     private void Awake()
@@ -29,14 +31,14 @@ public class Enemy : MonoBehaviour
         anim.SetTrigger("PlayDie");
         Collider body = GetComponent<Collider>();
         body.enabled = false;
-        Invoke("PlayDestruction", 0.6f);
+        Invoke("PlayDestruction", retardoPlayDestruction);
         Destroy(gameObject, 2);
 
         EnemyManager.SharedInstance.RemoveEnemy(this);
         ScoreManager.SharedInstance.Amount += pointsAmount;
     }
 
-    void PlayDestruction()
+    private void PlayDestruction()
     {
         ParticleSystem xplosion = GetComponentInChildren<ParticleSystem>();
         xplosion.Play();
@@ -45,6 +47,6 @@ public class Enemy : MonoBehaviour
     private void OnDestroy()
     {
         Life life = GetComponent<Life>();
-        life.onDeath.RemoveListener(DestroyEnemy);//Eliminar el listener al eliminar el objeto para que no se quede un "memory leak"
+        life.onDeath.RemoveListener(DestroyEnemy);//For not incurring in as memory leak remove the listener at GameObject destruction 
     }
 }
