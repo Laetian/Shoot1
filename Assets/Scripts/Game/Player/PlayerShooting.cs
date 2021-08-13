@@ -43,7 +43,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0)&& Time.timeScale > 0)
         {
             if (bulletAmount > 0)
             {
@@ -66,6 +66,10 @@ public class PlayerShooting : MonoBehaviour
         bullet.transform.rotation = shootingPoint.transform.rotation;
         bullet.SetActive(true);
         bulletAmount--;
+        if(bulletAmount<0)
+        {
+            bulletAmount = 0;
+        }
         onAmmoChanged.Invoke();
     }
 
