@@ -13,6 +13,10 @@ public class PlayerShooting : MonoBehaviour
     private GameObject shootingPoint;
 
     [SerializeField]
+    [Tooltip("Particles shooting effect")]
+    private ParticleSystem shootingEffect;
+
+    [SerializeField]
     [Tooltip("Número de balas del jugador")]
     private int bulletAmount;
     public int BulletAmount
@@ -66,6 +70,7 @@ public class PlayerShooting : MonoBehaviour
         bullet.transform.rotation = shootingPoint.transform.rotation;
         bullet.SetActive(true);
         bulletAmount--;
+        shootingEffect.Play();
         if(bulletAmount<0)
         {
             bulletAmount = 0;
