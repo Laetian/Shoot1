@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class DamageOnContact : MonoBehaviour
 {
-    
-
     public float damage;
     private void OnTriggerEnter(Collider other)
     {
-        gameObject.SetActive(false);
 
-        /*
-        if(other.CompareTag("Enemy")|| other.CompareTag("Player"))
-        Destroy(other.gameObject);
-        */
 
+
+        if (other.CompareTag("Enemy") || other.CompareTag("Player"))
+        {
+            //gameObject.SetActive(false);
+            //Destroy(other.gameObject);
+
+
+
+        }
         Life life = other.GetComponent<Life>();
         if (life != null)
         {
