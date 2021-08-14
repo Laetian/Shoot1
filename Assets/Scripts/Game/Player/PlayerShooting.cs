@@ -17,6 +17,10 @@ public class PlayerShooting : MonoBehaviour
     private ParticleSystem shootingEffect;
 
     [SerializeField]
+    [Tooltip("Shoot sound basic")]
+    private AudioSource shootSound;
+
+    [SerializeField]
     [Tooltip("Número de balas del jugador")]
     private int bulletAmount;
     public int BulletAmount
@@ -71,6 +75,7 @@ public class PlayerShooting : MonoBehaviour
         bullet.SetActive(true);
         bulletAmount--;
         shootingEffect.Play();
+        Instantiate(shootSound, transform.position, transform.rotation).GetComponent<AudioSource>().Play();
         if(bulletAmount<0)
         {
             bulletAmount = 0;
