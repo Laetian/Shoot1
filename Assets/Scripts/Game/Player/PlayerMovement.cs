@@ -2,29 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))] //Si no tiene RigidBody se lo pone
-
+[RequireComponent(typeof(Rigidbody))] //Place RigidBody inn case do not have it.
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    [Tooltip("Fuerza de movimiento del personaje en N/S")]
+    [Tooltip("Movement force of character in N/S")]
     [Range(0, 1000)]
     private float speed;
+    [SerializeField]
+    [Tooltip("Movement force of character in N/S")]
+    [Range(0, 1000)]
+    private float speedRun;
 
     [SerializeField]
-    [Tooltip("Fuerza de rotacion del personaje en N/s")]
+    [Tooltip("Torque of character in N/s")]
     [Range(0, 90)]
     private float rotationSpeed;
 
 
     private Rigidbody rb;
+    private Animator _animator;
 
-    private void Start()
+    private void Awake()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
         rb = GetComponent<Rigidbody>();
+        _animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -37,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         float space = speed * Time.deltaTime;
+        float spaceRun = speedRun * Time.deltaTime;
 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -49,6 +55,15 @@ public class PlayerMovement : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X");
         //transform.Rotate(0, mouseX * angle, 0);
         rb.AddRelativeTorque(0, mouseX * angle, 0);
+        _animator.SetFloat("Speed", rb.velocity.magnitude);
+        _animator.SetFloat("MoveX", horizontal);
+        _animator.SetFloat("MoveY", vertical);
+
+        if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            rb.AddRelativeForce(dir.normalized * spaceRun);
+        }
+
 
 
         /*
