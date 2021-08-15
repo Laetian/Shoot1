@@ -11,13 +11,15 @@ public class EnemyFSM : MonoBehaviour
 
     private Sight _sight;
 
-    public Transform baseTransform;
+    private Transform baseTransform;
 
     public float baseAttackDistance, playerAttackDistance;
 
     private void Awake()
     {
         _sight = GetComponent<Sight>();
+        baseTransform = GameObject.Find("Base").transform; //Find by name
+        //baseTransform = GameObject.FindWithTag("Base").transform; // Can only recognize 1 object, problems if more than one exists
     }
     private void Update()
     {
