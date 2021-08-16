@@ -1644,7 +1644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26326fe6f2e97a84ea99fc2c3cf84cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 10
+  distance: 30
   angle: 45
   targetLayer:
     serializedVersion: 2
@@ -1666,8 +1666,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  baseAttackDistance: 0
-  playerAttackDistance: 0
+  playerAttackDistance: 20
+  baseAttackDistance: 5
+  shootRate: 2
 --- !u!1 &7993767700196618401
 GameObject:
   m_ObjectHideFlags: 0
@@ -2694,6 +2695,7 @@ GameObject:
   - component: {fileID: 7993767700813392232}
   - component: {fileID: 7993767700813392230}
   - component: {fileID: 2265371332533878536}
+  - component: {fileID: 3756730531691779530}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -2803,7 +2805,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -2811,6 +2813,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3756730531691779530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7993767700813392229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a26612eaebdd2b546a3154c07669f42c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7993767699274240222
 PrefabInstance:
   m_ObjectHideFlags: 0

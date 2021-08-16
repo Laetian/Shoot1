@@ -89,7 +89,10 @@ public class PlayerShooting : MonoBehaviour
         bullet.transform.rotation = shootingPoint.transform.rotation;
         bullet.SetActive(true);
         bulletAmount--;
-        shootingEffect.Play();
+        if(shootingEffect!=null)
+        {
+            shootingEffect.Play();
+        }
         Instantiate(shootSound, transform.position, transform.rotation).GetComponent<AudioSource>().Play();
         if(bulletAmount<0)
         {

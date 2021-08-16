@@ -13,10 +13,14 @@ public class EnemyFSM : MonoBehaviour
     private Sight _sight;
 
     private Transform baseTransform;
-
-    public float baseAttackDistance, playerAttackDistance;
+    [SerializeField]
+    private float playerAttackDistance;
+    [SerializeField]
+    private float baseAttackDistance;
 
     private NavMeshAgent agent;
+
+    private Animator animator;
 
     private void Awake()
     {
@@ -24,6 +28,7 @@ public class EnemyFSM : MonoBehaviour
         baseTransform = GameObject.Find("Base").transform; //Find by name
         //baseTransform = GameObject.FindWithTag("Base").transform; // Can only recognize 1 object, problems if more than one exists
         agent = GetComponentInParent<NavMeshAgent>();
+        animator = GetComponentInParent<Animator>();
     }
     private void Update()
     {
@@ -67,7 +72,8 @@ public class EnemyFSM : MonoBehaviour
 
     void GoToBase()
     {
-        print("Ir a la base");
+        animator.SetBool("ShotBullet", false);
+        agent.isStopped = false;
         agent.SetDestination(baseTransform.position);
 
         if (_sight.detectedTarget != null)
@@ -83,16 +89,20 @@ public class EnemyFSM : MonoBehaviour
     }
     void AttackBase()
     {
-        print("Attack the base");
+        agent.isStopped = true;
+        LookAt(baseTransform.position);
+        shootTarget();
     }
     void ChasePlayer()
     {
-        print("Chase the player");
+        animator.SetBool("ShotBullet", false);
         if (_sight.detectedTarget == null)
         {
             currentState = EnemyState.GoToBase;
             return;
         }
+        agent.isStopped = false;
+        agent.SetDestination(_sight.detectedTarget.transform.position);
         float distanceToPlayer = Vector3.Distance(transform.position, _sight.detectedTarget.transform.position);
         if (distanceToPlayer < playerAttackDistance)
         {
@@ -101,14 +111,16 @@ public class EnemyFSM : MonoBehaviour
     }
     void AttackPlayer()
     {
-        print("Attack to the player");
+        agent.isStopped = true;
         if (_sight.detectedTarget == null)
         {
             currentState = EnemyState.GoToBase;
             return;
         }
+        LookAt(_sight.detectedTarget.transform.position);
+        shootTarget();
         float distanceToPlayer = Vector3.Distance(transform.position, _sight.detectedTarget.transform.position);
-        if (distanceToPlayer > playerAttackDistance * 1.3)
+        if (distanceToPlayer > playerAttackDistance * 1.5)
         {
             currentState = EnemyState.ChasePlayer;
         }
@@ -120,5 +132,32 @@ public class EnemyFSM : MonoBehaviour
 
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, baseAttackDistance);
+    }
+    private float lastShootTime;
+    [SerializeField]
+    private float shootRate;
+    void shootTarget()
+    {
+        if (Time.timeScale>0)
+        {
+            var timeSinceLastShoot = Time.time - lastShootTime;
+            if (timeSinceLastShoot < shootRate)
+            {
+                return;
+            }
+            lastShootTime = Time.time;
+            animator.SetBool("ShotBullet", true);
+            var bullet = BulletPool.SharedInstance.GetFirstPooledObject();
+            bullet.layer = LayerMask.NameToLayer("EnemyBullet");
+            bullet.transform.position = transform.position;
+            bullet.transform.rotation = transform.rotation;
+            bullet.SetActive(true);
+        }
+    }
+    void LookAt(Vector3 targetPos)
+    {
+        Vector3 directionToLook = Vector3.Normalize(targetPos - transform.position);
+        directionToLook.y = 0;
+        transform.parent.forward = directionToLook;
     }
 }
