@@ -5,18 +5,16 @@ using UnityEngine;
 public class DamageOnContact : MonoBehaviour
 {
     public float damage;
+
     private void OnTriggerEnter(Collider other)
     {
 
 
 
-        if (other.CompareTag("Enemy") || other.CompareTag("Player"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") || other.gameObject.layer == LayerMask.NameToLayer("Player") || other.gameObject.layer == LayerMask.NameToLayer("TerrainStructures") )
         {
-            //gameObject.SetActive(false);
-            //Destroy(other.gameObject);
-
-
-
+            gameObject.SetActive(false);
+            //Destroy(other.gameObject);            
         }
         Life life = other.GetComponent<Life>();
         if (life != null)

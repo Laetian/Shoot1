@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(Sight))]
 public class EnemyFSM : MonoBehaviour
@@ -15,11 +16,14 @@ public class EnemyFSM : MonoBehaviour
 
     public float baseAttackDistance, playerAttackDistance;
 
+    private NavMeshAgent agent;
+
     private void Awake()
     {
         _sight = GetComponent<Sight>();
         baseTransform = GameObject.Find("Base").transform; //Find by name
         //baseTransform = GameObject.FindWithTag("Base").transform; // Can only recognize 1 object, problems if more than one exists
+        agent = GetComponentInParent<NavMeshAgent>();
     }
     private void Update()
     {
@@ -64,6 +68,8 @@ public class EnemyFSM : MonoBehaviour
     void GoToBase()
     {
         print("Ir a la base");
+        agent.SetDestination(baseTransform.position);
+
         if (_sight.detectedTarget != null)
         {
             currentState = EnemyState.ChasePlayer;
