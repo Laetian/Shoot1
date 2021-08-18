@@ -22,6 +22,8 @@ public class EnemyFSM : MonoBehaviour
 
     private Animator animator;
 
+    public GameObject shootingPoint;
+
     private void Awake()
     {
         _sight = GetComponent<Sight>();
