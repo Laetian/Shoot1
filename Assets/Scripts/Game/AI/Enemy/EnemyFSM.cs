@@ -151,8 +151,8 @@ public class EnemyFSM : MonoBehaviour
             animator.SetBool("ShotBullet", true);
             var bullet = BulletPool.SharedInstance.GetFirstPooledObject();
             bullet.layer = LayerMask.NameToLayer("EnemyBullet");
-            bullet.transform.position = transform.position;
-            bullet.transform.rotation = transform.rotation;
+            bullet.transform.position = shootingPoint.transform.position;
+            bullet.transform.rotation = shootingPoint.transform.rotation;
             bullet.SetActive(true);
         }
     }
