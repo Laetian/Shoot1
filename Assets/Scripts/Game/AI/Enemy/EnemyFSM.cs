@@ -93,7 +93,7 @@ public class EnemyFSM : MonoBehaviour
     {
         agent.isStopped = true;
         LookAt(baseTransform.position);
-        shootTarget();
+        ShootTarget();
     }
     void ChasePlayer()
     {
@@ -120,7 +120,7 @@ public class EnemyFSM : MonoBehaviour
             return;
         }
         LookAt(_sight.detectedTarget.transform.position);
-        shootTarget();
+        ShootTarget();
         float distanceToPlayer = Vector3.Distance(transform.position, _sight.detectedTarget.transform.position);
         if (distanceToPlayer > playerAttackDistance * 1.5)
         {
@@ -138,7 +138,7 @@ public class EnemyFSM : MonoBehaviour
     private float lastShootTime;
     [SerializeField]
     private float shootRate;
-    void shootTarget()
+    void ShootTarget()
     {
         if (Time.timeScale>0)
         {
