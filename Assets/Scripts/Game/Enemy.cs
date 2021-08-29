@@ -47,6 +47,6 @@ public class Enemy : MonoBehaviour
     private void OnDestroy()
     {
         Life life = GetComponent<Life>();
-        life.onDeath.RemoveListener(DestroyEnemy);//For not incurring in as memory leak remove the listener at GameObject destruction 
+        life.onDeath.RemoveListener(DestroyEnemy);//For not incurring in a memory leak remove the listener at GameObject destruction 
     }
 }

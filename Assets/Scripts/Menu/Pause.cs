@@ -25,6 +25,8 @@ public class Pause : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Time.timeScale = 0;
             pauseMenu.SetActive(true);
+
+            pauseSnp.TransitionTo(0.2f);
         }
     }
 

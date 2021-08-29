@@ -8,7 +8,7 @@ public class ResumeButton : MonoBehaviour
     
     private Button resumeButton;
     [SerializeField]
-    public GameObject pauseMenu;
+    private GameObject pauseMenu;
     private void Awake()
     {
         resumeButton = GetComponent<Button>();
