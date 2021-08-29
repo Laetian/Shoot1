@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class RestartLevelButton : MonoBehaviour
 {
     private Button restartButton;
+
     private void Awake()
     {
         restartButton = GetComponent<Button>();

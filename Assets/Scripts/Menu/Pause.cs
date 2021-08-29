@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Pause : MonoBehaviour
 {
 
     public GameObject pauseMenu;
+
+    [SerializeField]
+    private AudioMixerSnapshot pauseSnp, gameSnp;
+
     private void Awake()
     {
         pauseMenu.SetActive(false);
