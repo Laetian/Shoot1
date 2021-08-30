@@ -32,15 +32,9 @@ public class PlayerMovement : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    private void FixedUpdate()
-    {
-        
-    }
+
     void Update()
     {
-
-
-
         float space = speed * Time.deltaTime;
         float spaceRun = speedRun * Time.deltaTime;
 

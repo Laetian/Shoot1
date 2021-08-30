@@ -9,7 +9,8 @@ AudioMixerSnapshotController:
   m_Name: Pause
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: dfbabc65422a664449ffc3801ed0f2dd
-  m_FloatValues: {}
+  m_FloatValues:
+    9ad073962ee4f644c9a8c17878e3eacd: -41.52018
   m_TransitionOverrides: {}
 --- !u!241 &24100000
 AudioMixerController:
@@ -33,7 +34,7 @@ AudioMixerController:
     - fe90f91ef7930484cad16a2adb7c5186
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: 24500006}
+  m_TargetSnapshot: {fileID: -7783689292236045345}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -76,5 +77,6 @@ AudioMixerSnapshotController:
   m_Name: Game
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: c9aecc9da54608443b51d030283c8a89
-  m_FloatValues: {}
+  m_FloatValues:
+    9ad073962ee4f644c9a8c17878e3eacd: -0.025776558
   m_TransitionOverrides: {}

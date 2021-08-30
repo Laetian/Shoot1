@@ -15,6 +15,10 @@ public class Pause : MonoBehaviour
     {
         pauseMenu.SetActive(false);
     }
+    private void Start()
+    {
+        ResumeButton.SharedInstance.gameResume.AddListener(ResumeGame);
+    }
 
     // Update is called once per frame
     void Update()
@@ -28,6 +32,14 @@ public class Pause : MonoBehaviour
 
             pauseSnp.TransitionTo(0.2f);
         }
+    }
+    public void ResumeGame()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        gameSnp.TransitionTo(0.2f);
     }
 
 
