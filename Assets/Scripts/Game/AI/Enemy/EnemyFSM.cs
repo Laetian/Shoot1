@@ -22,7 +22,9 @@ public class EnemyFSM : MonoBehaviour
 
     private Animator animator;
 
-    public GameObject shootingPoint;
+    public Weapon weapon;
+
+
 
     private void Awake()
     {
@@ -135,26 +137,15 @@ public class EnemyFSM : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, baseAttackDistance);
     }
-    private float lastShootTime;
-    [SerializeField]
-    private float shootRate;
+
     void ShootTarget()
     {
-        if (Time.timeScale>0)
+        //TODO: fix this
+        if(weapon.Shoot("EnemyBullet"))
         {
-            var timeSinceLastShoot = Time.time - lastShootTime;
-            if (timeSinceLastShoot < shootRate)
-            {
-                return;
-            }
-            lastShootTime = Time.time;
             animator.SetBool("ShotBullet", true);
-            var bullet = BulletPool.SharedInstance.GetFirstPooledObject();
-            bullet.layer = LayerMask.NameToLayer("EnemyBullet");
-            bullet.transform.position = shootingPoint.transform.position;
-            bullet.transform.rotation = shootingPoint.transform.rotation;
-            bullet.SetActive(true);
         }
+
     }
     void LookAt(Vector3 targetPos)
     {

@@ -8,17 +8,11 @@ public class PlayerShooting : MonoBehaviour
 {
     public static PlayerShooting SharedInstance;
 
-    [SerializeField]
-    [Tooltip("Start point of bullet")]
-    private GameObject shootingPoint;
 
-    [SerializeField]
-    [Tooltip("Particles shooting effect")]
-    private ParticleSystem shootingEffect;
 
-    [SerializeField]
-    [Tooltip("Shoot sound basic")]
-    private AudioSource shootSound;
+
+
+
 
     [SerializeField]
     [Tooltip("Player number of bullets")]
@@ -31,10 +25,8 @@ public class PlayerShooting : MonoBehaviour
             bulletAmount = value;
         }
     }
-    [SerializeField]
-    [Tooltip("Time between shoots")]
-    private float fireRate = 0.5f;
-    private float lastShootTime;
+
+    public Weapon weapon;
 
     private Animator _animator;
 
@@ -58,20 +50,11 @@ public class PlayerShooting : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse0)&& Time.timeScale > 0)
         {
-            if (bulletAmount > 0)
+            if (bulletAmount > 0 && weapon.Shoot("PlayerBullet"))
             {
-                var timeSinceLastShoot = Time.time - lastShootTime;
-                if(timeSinceLastShoot < fireRate)
-                {
-                    return;
-                }
-                lastShootTime = Time.time;
+                //_animator.SetTrigger("ShotBulletTrigger");
+                _animator.SetBool("ShotBullet", true);
                 FireBullet();
-                //Invoke("FireBullet", 0);
-            }
-            else
-            {
-                //TODO: Activate text NoAmmo + sound
             }
         }
         else
@@ -81,19 +64,7 @@ public class PlayerShooting : MonoBehaviour
     }
     private void FireBullet()
     {
-        //_animator.SetTrigger("ShotBulletTrigger");
-        _animator.SetBool("ShotBullet", true);
-        GameObject bullet = BulletPool.SharedInstance.GetFirstPooledObject();
-        bullet.layer = LayerMask.NameToLayer("PlayerBullet");// Assign the wanted layer to prefab 
-        bullet.transform.position = shootingPoint.transform.position;
-        bullet.transform.rotation = shootingPoint.transform.rotation;
-        bullet.SetActive(true);
         bulletAmount--;
-        if(shootingEffect!=null)
-        {
-            shootingEffect.Play();
-        }
-        Instantiate(shootSound, transform.position, transform.rotation).GetComponent<AudioSource>().Play();
         if(bulletAmount<0)
         {
             bulletAmount = 0;

@@ -1668,8 +1668,7 @@ MonoBehaviour:
   currentState: 0
   playerAttackDistance: 20
   baseAttackDistance: 5
-  shootingPoint: {fileID: 8828467964848790001}
-  shootRate: 2
+  weapon: {fileID: 8146825497162932602}
 --- !u!1 &7993767700196618401
 GameObject:
   m_ObjectHideFlags: 0
@@ -2461,6 +2460,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7993767700639361729}
   - component: {fileID: 7993767700639361730}
+  - component: {fileID: 8146825497162932602}
   m_Layer: 7
   m_Name: AssaultRifle
   m_TagString: Untagged
@@ -2592,6 +2592,22 @@ SkinnedMeshRenderer:
     m_Center: {x: -34.27955, y: -49.079704, z: 120.48372}
     m_Extent: {x: 95.48148, y: 94.6697, z: 10.629513}
   m_DirtyAABB: 0
+--- !u!114 &8146825497162932602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7993767700639361728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0272b18dbacdcd345bd9d39d041c9a01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootingPoint: {fileID: 8828467964848790001}
+  shootRate: 2
+  shootingEffect: {fileID: 4516921218260183174, guid: 2e477b171392abb45a0aeea4b69ac875, type: 3}
+  shootSound: {fileID: 927262608453475269, guid: cd1dfe34eac14fc49b6dda28296b889e, type: 3}
 --- !u!1 &7993767700647878183
 GameObject:
   m_ObjectHideFlags: 0
