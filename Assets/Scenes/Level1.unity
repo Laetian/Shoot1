@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: c88fc038693d1b1439d4bddde64690f6
+  m_OcclusionCullingData: {fileID: 36300000, guid: ec7c280e6b35f284baf962a4382c8a85, type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -27278,7 +27278,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.5674797, y: 1}
+    m_SensorSize: {x: 1.829222, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -28046,7 +28046,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.5674797, y: 1}
+    m_SensorSize: {x: 1.829222, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
