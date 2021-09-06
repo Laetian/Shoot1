@@ -12,9 +12,15 @@ public class Sight : MonoBehaviour
 
     public Collider detectedTarget;
 
+    private Collider[] colliders;
+
     private void Update()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, distance, targetLayer);
+        if(Physics.OverlapSphereNonAlloc(transform.position, distance, this.colliders, targetLayer)==0)
+        {
+            return;
+        }
+        colliders = Physics.OverlapSphere(transform.position, distance, targetLayer);
 
         detectedTarget = null; // Cleaning the condition 
 
