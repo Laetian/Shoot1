@@ -13,10 +13,10 @@ public class GameOver : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
+        int scoreActual = PlayerPrefs.GetInt("Last Score");
+        int scoreMax = PlayerPrefs.GetInt("High Score");
         //actualScore.text = "Score: " + PlayerPrefs.GetInt("Last Score");
-        actualScore.text = string.Format("Score: {0}", PlayerPrefs.GetInt("Last Score"));
-        highScore.text = string.Format("High Score: {0}", PlayerPrefs.GetInt("High Score"));
+        actualScore.text = string.Format("Score: {0}", scoreActual);
+        highScore.text = string.Format("High Score: {0}", scoreMax);
     }
-
-
 }
