@@ -13,8 +13,9 @@ public class GameOver : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
-        actualScore.text = "Score: " + PlayerPrefs.GetInt("Last Score");
-        highScore.text = "High Score: " + PlayerPrefs.GetInt("High Score");
+        //actualScore.text = "Score: " + PlayerPrefs.GetInt("Last Score");
+        actualScore.text = string.Format("Score: {0}", PlayerPrefs.GetInt("Last Score"));
+        highScore.text = string.Format("High Score: {0}", PlayerPrefs.GetInt("High Score"));
     }
 
 
