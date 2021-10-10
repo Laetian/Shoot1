@@ -5,6 +5,8 @@
 [Bb]uilds/
 Assets/AssetStoreTools*
 
+Pokymon/Logs/
+
 # Visual Studio cache directory
 .vs/
 
@@ -25,6 +27,7 @@ ExportedObj/
 *.opendb
 *.VC.db
 
+
 # Unity3D generated meta files
 *.pidb.meta
 *.pdb.meta
@@ -35,3 +38,5 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+*.log
+*.log
